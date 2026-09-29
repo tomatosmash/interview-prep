@@ -1,0 +1,137 @@
+% !TeX program = xelatex
+% ============================================================
+%  通用保研 / 求职简历模板（一页 A4 · 中文）
+%
+%  编译：XeLaTeX（跑一次即可）
+%     xelatex resume-template.tex
+%
+%  使用说明：
+%    1. 把所有「XX / 占位符」替换成你自己的信息；
+%    2. 证件照命名为 photo.jpg 放在本目录；没有照片也能编译（显示占位框）；
+%    3. 字体默认微软雅黑 + Times New Roman（Windows 自带）；
+%       macOS 把 Microsoft YaHei 换成 PingFang SC，Linux 换成 Noto Sans CJK SC；
+%    4. 主题色 theme 可改成目标院校主色（如北大红 176,7,30 / 清华紫 102,8,116）。
+% ============================================================
+\documentclass[12pt]{ctexart}
+
+\usepackage[a4paper,top=1.1cm,bottom=1.0cm,left=1.2cm,right=1.2cm]{geometry}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{fancybox}
+
+% ---- 字体：中文微软雅黑，英文 Times New Roman ----
+\setmainfont{Times New Roman}
+\setCJKmainfont{Microsoft YaHei}
+
+% ---- 主题色（替换为目标院校主色）----
+\definecolor{theme}{RGB}{126, 12, 110}
+
+% ---- 取消首行缩进 ----
+\setlength{\parindent}{0pt}
+
+% ---- 行距（紧凑，保证一页）----
+\linespread{1.2}
+
+% ---- 列表紧凑化 ----
+\setlist[itemize]{nosep, leftmargin=*, itemsep=0pt}
+
+% ---- 章节标题：主题色加粗 + 底部横线 ----
+\titleformat{\section}{\Large\bfseries\raggedright\color{theme}}{}{0em}{}%
+  [{\color{theme}\titlerule}]
+\titlespacing*{\section}{0cm}{0.2em}{0.3em}
+
+% ---- 图标宽度 ----
+\newlength{\iconwidth}
+\setlength{\iconwidth}{1.5em}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% ==================== 页眉：姓名 + 报考/求职意向 ====================
+\begin{center}
+  {\fontsize{28}{34}\selectfont \textbf{张三}} \\[0.2em]
+  {\large 报考 / 求职意向：\textbf{XX 专业（学术型硕士）}}
+\end{center}
+\vspace{-0.5em}
+
+% ==================== 左侧：个人信息 + 教育背景 ====================
+\begin{minipage}[t]{0.78\textwidth}
+  % ---- 个人信息 ----
+  \begin{minipage}[t]{\textwidth}
+    \section[个人信息]{\makebox[\iconwidth][c]{\faAddressCard}\quad 个人信息}
+    \begin{tabular}{@{}l@{\quad}l@{\qquad}l@{\quad}l@{}}
+      \textbf{姓名}： & XX & \textbf{年龄}： & XX岁 \\[0.4em]
+      \textbf{性别}： & X & \textbf{政治面貌}： & XX \\
+    \end{tabular}
+    \vspace{0.8em}
+  \end{minipage}
+
+  % ---- 教育背景 ----
+  \begin{minipage}[t]{\textwidth}
+    \section[教育背景]{\makebox[\iconwidth][c]{\faGraduationCap}\quad 教育背景}
+    {\large \textbf{XX大学 \,|\, XX学院 \,|\, XX专业}} \hfill 20XX.09 -- 20XX.06
+    \begin{itemize}
+      \item 推免综合成绩排名：\textbf{X / Y}，绩点：\textbf{X.XXX / 4.0}
+      \item 主修课程：数据结构、操作系统、计算机网络、数据库系统原理、软件工程
+      \item 英语水平：CET-6 \textbf{XXX} 分
+    \end{itemize}
+    \vspace{0.8em}
+  \end{minipage}
+\end{minipage}
+\hfill
+% ==================== 右侧：证件照 ====================
+\begin{minipage}[t]{0.2\textwidth}
+  \vspace{2em}
+  \setlength{\fboxsep}{0pt}
+  \IfFileExists{photo.jpg}
+    {\doublebox{\includegraphics[width=\dimexpr\linewidth-5pt\relax]{photo.jpg}}}
+    {\doublebox{\parbox[c][4.5cm][c]{\dimexpr\linewidth-5pt\relax}{\centering\small 证件照\\photo.jpg}}}
+\end{minipage}
+
+% ==================== 项目经历 ====================
+\section[项目经历]{\makebox[\iconwidth][c]{\faChalkboardTeacher}\quad 项目经历}
+% —— 以下为示例，请替换成你自己的项目（每个项目：一句话定位 + 2~3 条职责/成果）——
+
+{\large \textbf{XX 项目名称（方向）}} \hfill 20XX.XX -- 20XX.XX
+\begin{itemize}
+  \item 一句话概括：用什么技术做了什么系统，解决什么问题；
+  \item 你的分工：负责哪个模块，技术要点（如 RAG 检索增强、向量数据库）；
+  \item 量化成果：把 XX 指标从 X 提升到 Y。
+\end{itemize}
+
+{\large \textbf{XX 项目名称（方向）}} \hfill 20XX.XX -- 20XX.XX
+\begin{itemize}
+  \item 一句话概括：复现某论文 / 实现某算法，迁移到新场景；
+  \item 你的分工：数据、模型、实验设计；
+  \item 量化成果：经 X 组对照实验将 F1 从 X 提升到 Y。
+\end{itemize}
+
+{\large \textbf{XX 项目名称（方向）}} \hfill 20XX.XX -- 20XX.XX
+\begin{itemize}
+  \item 一句话概括：……；
+  \item 你的分工：……；
+  \item 量化成果：……。
+\end{itemize}
+
+% ==================== 竞赛获奖 ====================
+\section[竞赛获奖]{\makebox[\iconwidth][c]{\faTrophy}\quad 竞赛获奖}
+\begin{itemize}
+  \item \textbf{XX 竞赛}，XX 奖 \hfill 20XX
+  \item \textbf{XX 竞赛}，XX 奖 \hfill 20XX
+\end{itemize}
+
+% ==================== 技能特长 ====================
+\section[技能特长]{\makebox[\iconwidth][c]{\faWrench}\quad 技能特长}
+\begin{itemize}
+  \item 编程语言：Python、C / C++、Java
+  \item 开发工具：OpenCV、MediaPipe、Docker、Git、Linux
+  \item 其他：熟悉大语言模型应用开发流程、微服务架构
+\end{itemize}
+
+\end{document}
